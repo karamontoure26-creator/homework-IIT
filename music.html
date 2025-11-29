@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music - Creative Corner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    
+                       <img src="images/logo4.jpg" alt="logo">
+                    </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="music.html" class="active">Music</a></li>
+                        <li><a href="video.html">Video</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Our Music</h2>
+                 
+                <div class="music-player">
+                    <div class="track">
+                        <div class="track-info">
+                            <div class="track-title">Coran peace of mind</div>
+                            <div class="track-artist">here you have freedom</div>
+                        </div>
+                        <button class="play-button" onclick="playAudio('audio1', this)">▶</button>
+                        <audio id="audio1" src="audios/music.mp3"></audio>
+                    </div>
+                    <div class="track">
+                        <div class="track-info">
+                            <div class="track-title">Do not forget Allah</div>
+                            <div class="track-artist">you , listen</div>
+                        </div>
+                        <button class="play-button" onclick="playAudio('audio2', this)">▶</button>
+                        <audio id="audio2" src="audios/music1.mp3"></audio>
+                    </div>
+                    <div class="track">
+                        <div class="track-info">
+                            <div class="track-title">World is better </div>
+                            <div class="track-artist">by listen</div>
+                        </div>
+                        <button class="play-button" onclick="playAudio('audio3', this)">▶</button>
+                        <audio id="audio3" src="audios/music2.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MTYCI</h3>
+                    <p>Best for numeric.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="music.html">Music</a></li>
+                        <li><a href="video.html">Video</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                     <ul>
+                        <li>Email: karamotoure26.com</li>
+                        <li>Phone: (+7)9105475020 </li>
+                        <li>Address: MTYCI</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 MTYCI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentAudio = null;
+        let currentButton = null;
+
+        function playAudio(audioId, button) {
+            const audio = document.getElementById(audioId);
+            
+            if (currentAudio === audio) {
+                if (audio.paused) {
+                    audio.play();
+                    button.textContent = '❚❚';
+                } else {
+                    audio.pause();
+                    button.textContent = '▶';
+                }
+            } else {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                if (currentButton) {
+                    currentButton.textContent = '▶';
+                }
+                
+                audio.play();
+                button.textContent = '❚❚';
+                currentAudio = audio;
+                currentButton = button;
+            }
+            
+            audio.onended = function() {
+                button.textContent = '▶';
+                currentAudio = null;
+                currentButton = null;
+            };
+        }
+    </script>
+</body>
+</html>
